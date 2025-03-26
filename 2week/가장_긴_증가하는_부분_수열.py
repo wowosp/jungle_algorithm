@@ -4,31 +4,31 @@ N=int(sys.stdin.readline())
 
 A=list(map(int,sys.stdin.readline().split()))
 
-def binary_search(target,lis):
-    start,end = 0,len(lis)-1
+def binary_search(target,arr):
+    start,end = 0,len(arr)-1
     while start < end:
         mid = (start + end) // 2 
-        if lis[mid] == target:
+        if arr[mid] == target:
             return mid
-        elif lis[mid-1] < target < lis[mid]: 
+        elif arr[mid-1] < target < arr[mid]: 
             return mid
-        elif target < lis[mid]:
+        elif target < arr[mid]:
             end = mid - 1
         else:
             start = mid + 1
     return start 
 
 def sol(a,n):
-    lis = [a[0]] 
+    arr = [a[0]] 
     for i in range(1,n):
         target = a[i]
-        if lis[-1] < target: 
-            lis.append(target)
+        if arr[-1] < target: 
+            arr.append(target)
         else:
-            idx = binary_search(target,lis)
-            lis[idx] = target
+            idx = binary_search(target,arr)
+            arr[idx] = target
 
-    return len(lis) 
+    return len(arr) 
 
 print(sol(A,N))
 
